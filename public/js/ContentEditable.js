@@ -1,6 +1,6 @@
 $(document).ready(function() {
     
-    $(".editable").click(divClicked);
+    $(".editable").click(tagClicked);
 
     var attrs      = [];
     var attributes = [];
@@ -10,8 +10,8 @@ $(document).ready(function() {
     var editableTag      = "";
     var editableOriginal = "";
      
-    function divClicked() {
-        var divHtml = $(this).html();
+    function tagClicked() {
+        var tagHtml = $(this).html();
         var height = $(this).height();
         
         editableTag = this.nodeName.toLowerCase();
@@ -32,8 +32,8 @@ $(document).ready(function() {
         attrsHtml = attrs.join(' ');
 
         var editableText = $("<textarea class=\"editabler\" style=\"height: " + height + "px\"/>");
-        editableText.val(divHtml);
-        editableOriginal = divHtml;
+        editableText.val(tagHtml);
+        editableOriginal = tagHtml;
         
         $(this).replaceWith(editableText);
         editableText.focus();
@@ -60,7 +60,7 @@ $(document).ready(function() {
         }
 
         $(this).replaceWith(viewableText);
-        viewableText.click(divClicked);
+        viewableText.click(tagClicked);
     }
 
 });
