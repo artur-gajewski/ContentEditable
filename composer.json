@@ -1,0 +1,32 @@
+{
+    "name": "artur-gajewski/content-editable",
+    "description": "This module provides a way to make any HTML tag's inner content editable in TEXTAREA editor.",
+    "type": "module",
+    "keywords": [
+        "zf2",
+        "content",
+        "edit"
+    ],
+    "homepage": "https://github.com/artur-gajewski/ContentEditable",
+    "authors": [
+        {
+            "name": "Artur Gajewski",
+            "email": "info@arturgajewski.com",
+            "homepage": "https://github.com/artur-gajewski"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "dev-master",
+        "rwoverdijk/assetmanager": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "ContentEditable": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

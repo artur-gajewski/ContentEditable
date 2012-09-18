@@ -1,0 +1,7 @@
+textarea.editabler {
+    width: 100%;
+}
+
+.editable {
+    cursor: pointer;
+}
