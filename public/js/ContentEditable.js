@@ -9,9 +9,10 @@ $(document).ready(function() {
     var CE_editableUrl      = "";
     var CE_editableTag      = "";
     var CE_editableOriginal = "";
+    var CE_active           = false; 
      
     function tagClicked() {
-        var tagHtml = $.trim($(this).html());
+        var tagHtml = $(this).html();
         var height = $(this).height();
         
         CE_editableTag = this.nodeName.toLowerCase();
@@ -35,7 +36,10 @@ $(document).ready(function() {
         editableText.val(tagHtml);
         CE_editableOriginal = tagHtml;
         
-        $(this).replaceWith(editableText);
+        if (CE_active == false) {
+            $(this).html(editableText);
+            CE_active = true;
+        }
         editableText.focus();
         editableText.blur(editableTextBlurred);
     }
@@ -43,7 +47,6 @@ $(document).ready(function() {
     function editableTextBlurred() {
         var html = $(this).val();
         var viewableText = $("<" + CE_editableTag + " " + CE_attrsHtml + ">");
-
         var answer = confirm("Do you really want to update this content?")
         if (answer){
             viewableText.html(html);
@@ -58,11 +61,10 @@ $(document).ready(function() {
         } else {
             viewableText.html(CE_editableOriginal);
         }
-
-        $(this).replaceWith(viewableText);
+        CE_active = false;
+        $(this).replaceWith(html);
         viewableText.click(tagClicked);
     }
-
 });
 
 
