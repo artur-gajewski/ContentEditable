@@ -33,13 +33,14 @@ Now run the Composer:
 php composer.phar install
 ```
 
-Then add 'ContentEditable' into the Module array in APPLICATION_ROOT/config/application.config.php
+Then add 'ContentEditable' and 'AssetManager' modules into the Module array in APPLICATION_ROOT/config/application.config.php
 
 ```php
 <?php
 return array(
     'modules' => array(
         ...
+        'AssetManager',
         'ContentEditable',
         ...
     ),
