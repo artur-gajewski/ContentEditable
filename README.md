@@ -19,6 +19,15 @@ See [https://github.com/artur-gajewski/ContentEditable](https://github.com/artur
 @Author: Artur Gajewski
 
 
+## Live demo
+
+You can go ahead and try the live demo of ContentEditable module at [http://arturgajewski.com/cedemo](http://arturgajewski.com/cedemo)
+
+Click on any of the three columns on the front page to edit their content. Once done, click outside the div to get confirmation to save modifications.
+
+Please note: This is a demo, no data is actually saved and will revert to original content on page reload.
+
+
 ## Installation with Composer
 
 Go to your project directory and add the following line to "require" list in composer.json file:
