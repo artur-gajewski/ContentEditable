@@ -142,8 +142,8 @@ If you are using ContentEditable for example in a blog and you want to inform yo
 article are you trying to save, add an extra part to your data-url:
 
 ```php
-<div class="editable article_title" data-url="/article/update/1432/title">This is my article's title</div>
-<div class="editable article_content" data-url="/article/update/1432/content">This is my article's content</div>
+<div class="editable article_title" data-url="/article/update/1432/title">This is my article title</div>
+<div class="editable article_content" data-url="/article/update/1432/content">This is my article content</div>
 ```
 
 In this case of course, you would have to add the extra part to your router as well:
@@ -168,6 +168,11 @@ In this case of course, you would have to add the extra part to your router as w
 ###3. Why is there no function to save to database out-of-the-box?
 
 My plans are to add such capability is a future version. Stay tuned!
+
+
+###4. Are there any other future plans?
+
+Yes. I am planning on adding preview functionality so that you can preview the content before saving it. Also there will be nicer looking styles for the TEXTAREA editor. I will also implement a better looking modal for confirmation and messages instead of alert function.
 
 
 ## Questions or comments?
