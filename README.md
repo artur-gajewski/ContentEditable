@@ -175,7 +175,7 @@ In this case of course, you would have to add the extra part to your router as w
 ```
 
 
-###3. Why TEXTAREA and not a WYWIWYG editor?
+###3. Why TEXTAREA and not a WYSIWYG editor?
 
 TEXTAREA is core HTML and provides a light and easy way to edit HTML code. ContentEditable is used to edit tag contents that are based on few words as well, so using a WYSIWYG editor for this is not very optimal approach.
 
