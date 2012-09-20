@@ -175,12 +175,17 @@ In this case of course, you would have to add the extra part to your router as w
 ```
 
 
-###3. Why is there no function to save to database out-of-the-box?
+###3. Why TEXTAREA and not a WYWIWYG editor?
+
+TEXTAREA is core HTML and provides a light and easy way to edit HTML code. ContentEditable is used to edit tag contents that are based on few words as well, so using a WYSIWYG editor for this is not very optimal approach.
+
+
+###4. Why is there no function to save to database out-of-the-box?
 
 My plans are to add such capability is a future version. Stay tuned!
 
 
-###4. Are there any other future plans?
+###5. Are there any other future plans?
 
 Yes. I am planning on adding preview functionality so that you can preview the content before saving it. Also there will be nicer looking styles for the TEXTAREA editor. I will also implement a better looking modal for confirmation and messages instead of alert function.
 
