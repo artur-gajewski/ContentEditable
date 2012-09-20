@@ -2,8 +2,24 @@ textarea.editabler {
     width: 100%;
     position: relative;
     z-index: 1;
+    
+    -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    box-shadow: inset 2px 2px 2px 0px #dddddd;
+    
+    overflow: auto;
+    font-family: tahoma;
+    font-size: 13px;
+    border: 1px solid #aaa;
 }
 
 .editable {
     cursor: pointer;
+}
+
+.editable:hover {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    border:3px dashed red;
 }
