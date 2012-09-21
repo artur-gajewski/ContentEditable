@@ -23,9 +23,9 @@ class ContentEditable extends AbstractHelper
      * @param integer $id
      * @return ContentEditable\Helper
      */
-    public function __invoke($type)
+    public function __invoke($type, $option = null)
     {
-        $link = $this->service->get(strtolower($type));
+        $link = $this->service->get(strtolower($type), $option);
         return $link;
     }
 

@@ -49,6 +49,17 @@ class Module
                     
                     return $viewHelper;
                 },
+                'getContentEditableContent' => function ($sm) {
+                    $locator = $sm->getServiceLocator();
+                    $config = $locator->get('Configuration');
+                    $params = $config['ContentEditable']['params'];
+                    
+                    $viewHelper = new View\Helper\ContentEditable();
+                    $viewHelper->setService($locator->get('ContentEditable'));
+                    $viewHelper->setParams($params);
+                    
+                    return $viewHelper;
+                },
             ),
         );
 

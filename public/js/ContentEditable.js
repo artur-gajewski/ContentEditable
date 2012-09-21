@@ -12,6 +12,13 @@ $(document).ready(function() {
     var CE_active           = false; 
      
     function tagClicked() {
+        
+        // Init variables on each click
+        CE_attrsHtml        = "";
+        CE_editableUrl      = "";
+        CE_editableTag      = "";
+        CE_editableOriginal = "";
+        
         var tagHtml = $(this).html();
         var height = $(this).height();
         
@@ -26,7 +33,8 @@ $(document).ready(function() {
         });
         
         if (!CE_editableUrl) {
-            alert("Attribute data-url is missing!");
+            $('#notification').find('p').html("Attribute data-url is missing!");
+            $("#notification").dialog();
             return;
         }
         
@@ -34,6 +42,7 @@ $(document).ready(function() {
 
         var editableText = $("<textarea class=\"editabler\" style=\"height: " + height + "px\"/>");
         editableText.val(tagHtml);
+        
         CE_editableOriginal = tagHtml;
         
         if (CE_active == false) {
@@ -47,20 +56,38 @@ $(document).ready(function() {
     function editableTextBlurred() {
         var html = $(this).val();
         var viewableText = $("<" + CE_editableTag + " " + CE_attrsHtml + ">");
-        var answer = confirm("Do you really want to update this content?")
-        if (answer){
-            viewableText.html(html);
-            $.ajax({
-                type:  'POST',
-                url:   CE_editableUrl,
-                data:  "editable_content=" + html,
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Content has not been saved due to an error: " + errorThrown);
+        
+        $('#notification').find('p').html("Please select action:");
+        $( "#notification" ).dialog({
+            resizable: false,
+            height:140,
+            modal: true,
+            buttons: {
+                "Save": function() {
+                    viewableText.html(html);
+                    $.ajax({
+                        type:  'POST',
+                        url:   CE_editableUrl,
+                        data:  "editable_content=" + html,
+                        success: function() {
+                            $(this).dialog( "close" );
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            $('#notification').find('p').html("There was an error: " + errorThrown);
+                        }
+                    });
+                },
+                "Preview": function() {
+                    viewableText.html(html);
+                    $(this).dialog( "close" );
+                },
+                Cancel: function() {
+                    viewableText.html(CE_editableOriginal);
+                    $(this).dialog( "close" );
                 }
-            });
-        } else {
-            viewableText.html(CE_editableOriginal);
-        }
+            }
+        });
+        
         CE_active = false;
         $(this).replaceWith(html);
         viewableText.click(tagClicked);

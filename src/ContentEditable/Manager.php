@@ -23,23 +23,31 @@ class Manager
         $this->params = $params;
     }
 
-    public function get($type) 
+    public function get($type, $option) 
     {
         if ($type == 'css') {
-            return $this->getCss();
+            return $this->getCss($option);
         }
-        if ($type == 'js') {
-            return $this->getJavascript();
+        elseif ($type == 'js') {
+            return $this->getJavascript($option);
+        }
+        elseif ($type == 'dialog') {
+            return $this->getContent($option);
         }
     }
     
     /**
      * Generate JS inclusion HTML code
      */
-    public function getJavascript()
+    public function getJavascript($includeBundledJquery = false)
     {
-        $link = '<script type="text/javascript" src="' . $this->params['js_source_path'] . '"></script>';
-        return $link;
+        $links = array();
+        if ($includeBundledJquery === true) {
+            $links[] = '<script type="text/javascript" src="' . $this->params['jquery_js_source_path'] . '"></script>';
+        }
+        $links[] = '<script type="text/javascript" src="' . $this->params['jquery-ui_js_source_path'] . '"></script>';
+        $links[] = '<script type="text/javascript" src="' . $this->params['js_source_path'] . '"></script>';
+        return implode("", $links);
     }
     
     /**
@@ -50,8 +58,41 @@ class Manager
      */
     public function getCss($media = 'screen')
     {
-        $link = '<link href="' . $this->params['css_source_path'] . '" media="'. $media .'" rel="stylesheet" type="text/css" />';
-        return $link;
+        $links = array();
+        $links[] = '<link href="' . $this->params['css_source_path'] . '" media="'. $media .'" rel="stylesheet" type="text/css" />';
+        $links[] = '<link href="' . $this->params['jquery_ui_css_path'] . '" rel="stylesheet" type="text/css" />';
+        
+        return implode("", $links);
     }
+    
+    /**
+     * Create DIV section for the jQuery-UI dialog
+     * 
+     * @return string 
+     */
+    public function getContent($options)
+    {
+        $id = '';
+        $title = '';
+        $content = '';
+        
+        if (!empty($options['id'])) {
+            $id = $options['id'];
+        }
+        if (!empty($options['title'])) {
+            $title = $options['title'];
+        }
+        if (!empty($options['content'])) {
+            $content = $options['content'];
+        }
+        
+        $html =  '<div class="CE_dialog" id="' . $id . '" title="' . $title . '">';
+        $html .= '    <p id="content">' . $content . '</p>';
+        $html .= '</div>';
+        
+        return $html;
+    }
+    
+    
     
 }
