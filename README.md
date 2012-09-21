@@ -13,8 +13,9 @@ Requirements:
 - Zend Framework 2
 - rwoverdijk/assetmanager @ [https://github.com/RWOverdijk/AssetManager](https://github.com/RWOverdijk/AssetManager)
 - jQuery
+- jQuery-UI
 
-See [https://github.com/artur-gajewski/ContentEditable](https://github.com/artur-gajewski/ContentEditable)
+Note: jQuery and jQuery-UI are bundled with this module and available out-of-the-box. You can override the bundled version with your own with minimal effort.
 
 @Author: Artur Gajewski
 
