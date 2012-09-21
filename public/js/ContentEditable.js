@@ -56,6 +56,7 @@ $(document).ready(function() {
     function editableTextBlurred() {
         var html = $(this).val();
         var viewableText = $("<" + CE_editableTag + " " + CE_attrsHtml + ">");
+        var error = false;
         
         $('#notification').find('p').html("Please select action:");
         $( "#notification" ).dialog({
@@ -63,14 +64,14 @@ $(document).ready(function() {
             height:140,
             modal: true,
             buttons: {
-                "Save": function() {
+                "Save": function(fn) {
                     viewableText.html(html);
                     $.ajax({
                         type:  'POST',
                         url:   CE_editableUrl,
                         data:  "editable_content=" + html,
                         success: function() {
-                            $(this).dialog( "close" );
+                            $('#notification').dialog('close');
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
                             $('#notification').find('p').html("There was an error: " + errorThrown);

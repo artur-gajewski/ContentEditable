@@ -23,7 +23,7 @@ See [https://github.com/artur-gajewski/ContentEditable](https://github.com/artur
 
 You can go ahead and try the live demo of ContentEditable module at [http://arturgajewski.com/cedemo](http://arturgajewski.com/cedemo)
 
-Click on any of the three columns on the front page to edit their content. Once done, click outside the div to get confirmation to save modifications.
+Click on any of the three columns on the front page to edit their content. Once done, click outside the div to get confirmation to save modifications. Third column will give an error status since it has a data-url that is not available.
 
 Please note: This is a demo, no data is actually saved and will revert to original content on page reload.
 
@@ -64,8 +64,30 @@ ContentEditable uses it's own Javascript and CSS files to generate dynamic edit 
 In order to get ContentEditable working, you need to include these files where you include all your Javascript and CSS files.
 
 ```php
-echo $this->getContentEditableFile('js');
-echo $this->getContentEditableFile('css');
+echo $this->getContentEditableFiles('js');
+echo $this->getContentEditableFiles('css');
+```
+
+if you want to include bundled jQuery and jQuery-UI, you need to add a boolean parameter like so:
+
+```php
+echo $this->getContentEditableFiles('js', true);
+echo $this->getContentEditableFiles('css', true);
+```
+
+If you want to override the bundled package with newer version, you can override the path to Javascript and CSS files in module.config.php file:
+
+```php
+'params' => array(
+    // ContentEditable related
+    'js_source_path'           => '/js/ContentEditable.js',
+    'css_source_path'          => '/css/ContentEditable.css',
+
+    // jQuery related
+    'jquery_js_source_path'    => '/js/jquery-1.8.0.min.js',
+    'jquery-ui_js_source_path' => '/js/jquery-ui-1.8.23.custom.min.js',
+    'jquery_ui_css_path'       => '/css/ui-lightness/jquery-ui-1.8.23.custom.css',
+    ),
 ```
 
 
@@ -183,11 +205,6 @@ TEXTAREA is core HTML and provides a light and easy way to edit HTML code. Conte
 ###4. Why is there no function to save to database out-of-the-box?
 
 My plans are to add such capability is a future version. Stay tuned!
-
-
-###5. Are there any other future plans?
-
-Yes. I am planning on adding preview functionality so that you can preview the content before saving it. Also there will be nicer looking styles for the TEXTAREA editor. I will also implement a better looking modal for confirmation and messages instead of alert function.
 
 
 ## Questions or comments?

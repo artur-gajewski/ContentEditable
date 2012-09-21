@@ -25,11 +25,11 @@ class Manager
 
     public function get($type, $option) 
     {
-        if ($type == 'css') {
-            return $this->getCss($option);
-        }
-        elseif ($type == 'js') {
+        if ($type == 'js') {
             return $this->getJavascript($option);
+        }
+        elseif ($type == 'css') {
+            return $this->getCss($option);
         }
         elseif ($type == 'dialog') {
             return $this->getContent($option);
@@ -44,23 +44,23 @@ class Manager
         $links = array();
         if ($includeBundledJquery === true) {
             $links[] = '<script type="text/javascript" src="' . $this->params['jquery_js_source_path'] . '"></script>';
+            $links[] = '<script type="text/javascript" src="' . $this->params['jquery-ui_js_source_path'] . '"></script>';
         }
-        $links[] = '<script type="text/javascript" src="' . $this->params['jquery-ui_js_source_path'] . '"></script>';
         $links[] = '<script type="text/javascript" src="' . $this->params['js_source_path'] . '"></script>';
+        
+        
         return implode("", $links);
     }
     
     /**
-     * Generate CSS inclusion HTML code
-     * 
-     * @param string $media
-     * @return string 
+     * Generate CSS inclusion CSS code
      */
-    public function getCss($media = 'screen')
+    public function getCss($includeBundledJquery = false)
     {
-        $links = array();
-        $links[] = '<link href="' . $this->params['css_source_path'] . '" media="'. $media .'" rel="stylesheet" type="text/css" />';
-        $links[] = '<link href="' . $this->params['jquery_ui_css_path'] . '" rel="stylesheet" type="text/css" />';
+        $links[] = '<link href="' . $this->params['css_source_path'] . '" rel="stylesheet" type="text/css" />';
+        if ($includeBundledJquery === true) {
+            $links[] = '<link href="' . $this->params['jquery_ui_css_path'] . '" rel="stylesheet" type="text/css" />';
+        }
         
         return implode("", $links);
     }

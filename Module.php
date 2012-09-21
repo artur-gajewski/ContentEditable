@@ -38,7 +38,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'getContentEditableFile' => function ($sm) {
+                'getContentEditableFiles' => function ($sm) {
                     $locator = $sm->getServiceLocator();
                     $config = $locator->get('Configuration');
                     $params = $config['ContentEditable']['params'];
