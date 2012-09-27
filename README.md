@@ -17,7 +17,7 @@ Requirements:
 
 Note: jQuery and jQuery-UI are bundled with this module and available out-of-the-box. You can override the bundled version with your own with minimal effort.
 
-@Author: Artur Gajewski
+Follow me on twitter: @GajewskiArtur
 
 
 ## Live demo
